@@ -1,0 +1,26 @@
+version: '3'
+services:
+  nodered:
+    image: nodered/node-red
+    ports:
+      - "1880:1880"
+    volumes:
+      - node_red_data:/data
+    networks:
+      - iot-network
+
+  influxdb:
+    image: influxdb:1.8
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb
+    networks:
+      - iot-network
+
+networks:
+  iot-network:
+
+volumes:
+  node_red_data:
+  influxdb_data:
